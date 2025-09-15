@@ -142,13 +142,13 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
-                    <a href="#auctions" class="text-gray-300 hover:text-white font-medium transition-colors">Auctions</a>
-                    <a href="#preorders" class="text-gray-300 hover:text-white font-medium transition-colors">Pre-Orders</a>
-                    <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors">About</a>
+                    <!-- <a href="#auctions" class="text-gray-300 hover:text-white font-medium transition-colors">Auctions</a> -->
+                    <!-- <a href="#preorders" class="text-gray-300 hover:text-white font-medium transition-colors">Pre-Orders</a> -->
+                    <a href="#how" class="text-gray-300 hover:text-white font-medium transition-colors">How it works</a>
                     <a href="#contact" class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
-                    <button class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                    <!-- <button class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">
                         Sign Up
-                    </button>
+                    </button> -->
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -193,7 +193,7 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
                         Join thousands revolutionizing car ownership in Nigeria with transparent auctions and guaranteed delivery
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto" onclick="whatsapp()">
+                        <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto" onclick="whatsapp('Hello Beta Motors, I am interested in your car for sale')">
                             Start Bidding Now
                         </button>
                     </div>
@@ -313,7 +313,7 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
     <div class="h-px section-divider"></div>
 
     <!-- Solution Section -->
-    <section class="py-24 bg-beta-black relative overflow-hidden">
+    <!-- <section class="py-24 bg-beta-black relative overflow-hidden">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 60 60\'><circle cx=\'30\' cy=\'30\' r=\'20\' fill=\'none\' stroke=\'%23dc2626\' stroke-width=\'1\'/><circle cx=\'30\' cy=\'30\' r=\'5\' fill=\'%23dc2626\'/></svg>');"></div>
         </div>
@@ -405,13 +405,82 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Section Divider -->
     <div class="h-px section-divider"></div>
 
+    <!-- Timeline Section -->
+    <!-- <section class="py-24 bg-beta-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Our Launch Journey</h2>
+                <p class="text-xl text-gray-400">Mapping our path to revolutionize Nigeria's car market</p>
+            </div>
+
+            <div class="timeline-line max-w-4xl mx-auto">
+                <div class="space-y-12 md:space-y-16">
+                    <div class="flex items-center md:justify-start fade-in">
+                        <div class="timeline-dot w-6 h-6 rounded-full mr-8 md:mr-12"></div>
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 1</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Market Research</h3>
+                            <p class="text-gray-400">Deep dive into Nigerian car market dynamics and consumer behavior</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center md:justify-end fade-in">
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md md:mr-12">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 2</div>
+                            <h3 class="text-xl font-bold text-white mb-2">MVP Development</h3>
+                            <p class="text-gray-400">Building core platform features and auction mechanisms</p>
+                        </div>
+                        <div class="timeline-dot w-6 h-6 rounded-full ml-8 md:ml-0"></div>
+                    </div>
+
+                    <div class="flex items-center md:justify-start fade-in">
+                        <div class="timeline-dot w-6 h-6 rounded-full mr-8 md:mr-12"></div>
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 3</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Partnership Network</h3>
+                            <p class="text-gray-400">Establishing relationships with suppliers and logistics partners</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center md:justify-end fade-in">
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md md:mr-12">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 4</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Beta Testing</h3>
+                            <p class="text-gray-400">Limited release to select users for feedback and improvements</p>
+                        </div>
+                        <div class="timeline-dot w-6 h-6 rounded-full ml-8 md:ml-0"></div>
+                    </div>
+
+                    <div class="flex items-center md:justify-start fade-in">
+                        <div class="timeline-dot w-6 h-6 rounded-full mr-8 md:mr-12"></div>
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 5</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Public Launch</h3>
+                            <p class="text-gray-400">Official platform launch with full feature set and marketing campaign</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center md:justify-end fade-in">
+                        <div class="glass-effect p-6 rounded-xl flex-1 max-w-md md:mr-12">
+                            <div class="text-beta-red font-bold text-lg mb-2">Week 6</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Scale & Optimize</h3>
+                            <p class="text-gray-400">Continuous improvement based on user feedback and market growth</p>
+                        </div>
+                        <div class="timeline-dot w-6 h-6 rounded-full ml-8 md:ml-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
     <!-- How It Works Section -->
-    <section class="py-24 bg-beta-gray">
+    <section id="how" class="py-24 bg-beta-gray">
         <div class="container mx-auto px-4">
             <div class="text-center mb-20 fade-in">
                 <h2 class="text-4xl md:text-5xl font-black text-white mb-6">How It Works</h2>
@@ -570,7 +639,7 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
                 <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
                     Partner with us for new car supply, financing solutions, and reliable delivery services across Nigeria
                 </p>
-                <button class="btn-primary text-white px-8 py-4 text-lg font-bold rounded-lg">
+                <button class="btn-primary text-white px-8 py-4 text-lg font-bold rounded-lg" onclick="whatsapp('Hello Beta Motors, I would like to partner.')">
                     Become a Partner
                 </button>
             </div>
@@ -578,7 +647,7 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
     </section>
 
     <!-- Call to Action Footer -->
-    <section class="py-24 bg-beta-black relative overflow-hidden">
+    <section id="contact" class="py-24 bg-beta-black relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-beta-red/10 to-transparent"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl mx-auto text-center fade-in">
@@ -697,8 +766,8 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
     <script>
         // Carousel functionality
 
-        function whatsapp(){
-            const plugin = function (number, text="Hello Beta Motors, I am interested in your car for sale") {
+        function whatsapp(message="Hello Beta Motors, I am interested in your car for sale"){
+            const plugin = function (number, text=message) {
                 // https://wa.me/15551234567?text=I'm%20interested%20in%20your%20car%20for%20sale.
                 const message = text.replace(/ /g, "%20")
                 return "https://wa.me/" + number + "?text=" + message
@@ -764,7 +833,7 @@ style="background-image: url('assets/images/car-three.jpeg');  background-size: 
                     ${content.subtitle}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto"  onclick="whatsapp()">
+                    <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto"  onclick="whatsapp('Hello Beta Motors, I am interested in your car for sale')">
                         ${content.primaryBtn}
                     </button>
                 </div>
