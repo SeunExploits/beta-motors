@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETA Motors – Affordable Car Auctions & Pre-Orders in Nigeria</title>
+    <meta name="description" content="Join thousands revolutionizing car ownership in Nigeria. Bid on imported cars, secure pre-orders, and enjoy doorstep delivery with transparent pricing.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beta-black': '#0a0a0a',
+                        'beta-red': '#dc2626',
+                        'beta-red-light': '#ef4444',
+                        'beta-gray': '#1a1a1a',
+                        'beta-gray-light': '#2a2a2a',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'pulse-red': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+        }
+        .carousel-slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .carousel-gradient {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 50%, rgba(220, 38, 38, 0.3) 100%);
+        }
+        .hero-glow {
+            box-shadow: 0 0 50px rgba(220, 38, 38, 0.3);
+        }
+        .timeline-line {
+            position: relative;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #dc2626, #ef4444);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 1rem;
+            }
+        }
+        .timeline-dot {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+        }
+        .glass-effect {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.6);
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.5), transparent);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.95);
+        }
+    </style>
+</head>
+<body class="font-inter text-white bg-beta-black">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 nav-blur border-b border-gray-800 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-beta-red to-beta-red-light rounded-lg flex items-center justify-center">
+                        <div class="w-6 h-6 bg-white rounded-sm"></div>
+                    </div>
+                    <span class="text-2xl font-bold">
+                        <span class="text-white">BETA</span> 
+                        <span class="text-beta-red">Motors</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="#auctions" class="text-gray-300 hover:text-white font-medium transition-colors">Auctions</a>
+                    <a href="#preorders" class="text-gray-300 hover:text-white font-medium transition-colors">Pre-Orders</a>
+                    <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors">About</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+                    <button class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                        Sign Up
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <div class="w-6 h-6 flex flex-col justify-center items-center">
+                        <span class="w-5 h-0.5 bg-white mb-1 transition-all"></span>
+                        <span class="w-5 h-0.5 bg-white mb-1 transition-all"></span>
+                        <span class="w-5 h-0.5 bg-white transition-all"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen overflow-hidden flex items-center">
+        <div class="carousel relative w-full h-full absolute inset-0">
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 carousel-gradient transition-opacity duration-1000" 
+                 style="background-image: url('assets/images/car-one.jpeg');  background-size: cover; background-position: center; height: 300px; width: 100%;">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 carousel-gradient opacity-0 transition-opacity duration-1000"
+style="background-image: url('assets/images/car-two.jpeg');  background-size: cover; background-position: center; height: 300px; width: 100%;">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute inset-0 carousel-gradient opacity-0 transition-opacity duration-1000"
+style="background-image: url('assets/images/car-three.jpeg');  background-size: cover; background-position: center; height: 300px; width: 100%;">
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="hero-content opacity-100 transition-opacity duration-1000">
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                        <span class="text-gradient">Affordable Imported Cars</span><br>
+                        <span class="text-white">Delivered to Your Doorstep</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto font-light">
+                        Join thousands revolutionizing car ownership in Nigeria with transparent auctions and guaranteed delivery
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto" onclick="whatsapp()">
+                            Start Bidding Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+            <button class="w-3 h-3 rounded-full bg-beta-red carousel-dot active" data-slide="0"></button>
+            <button class="w-3 h-3 rounded-full bg-white opacity-50 carousel-dot hover:opacity-100 transition-opacity" data-slide="1"></button>
+            <button class="w-3 h-3 rounded-full bg-white opacity-50 carousel-dot hover:opacity-100 transition-opacity" data-slide="2"></button>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="absolute left-6 top-1/2 transform -translate-y-1/2 text-white hover:text-beta-red transition-colors z-20" id="prev-btn">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+        </button>
+        <button class="absolute right-6 top-1/2 transform -translate-y-1/2 text-white hover:text-beta-red transition-colors z-20" id="next-btn">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+        </button>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="h-px section-divider"></div>
+
+    <!-- Problem Section -->
+    <section class="py-24 bg-beta-gray">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-12 leading-tight">
+                        Why Buying a Car in Nigeria is a 
+                        <span class="text-beta-red">Headache</span>
+                    </h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-6 p-6 glass-effect rounded-xl">
+                            <div class="w-12 h-12 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-2">Limited Access</h3>
+                                <p class="text-gray-400">Most Nigerians can't access global car markets directly, limiting choice and competition</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-6 p-6 glass-effect rounded-xl">
+                            <div class="w-12 h-12 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-2">Inflated Prices</h3>
+                                <p class="text-gray-400">Hidden fees and multiple middlemen drive costs up by 30-50% above market value</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-6 p-6 glass-effect rounded-xl">
+                            <div class="w-12 h-12 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-2">Zero Flexibility</h3>
+                                <p class="text-gray-400">Limited payment options, no financing solutions, and rigid purchase processes</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-6 p-6 glass-effect rounded-xl">
+                            <div class="w-12 h-12 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-2">Poor Experience</h3>
+                                <p class="text-gray-400">Unreliable delivery, lack of transparency, and complex bureaucratic processes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="grid grid-cols-1 gap-8">
+                        <div class="glass-effect p-8 rounded-2xl border-l-4 border-beta-red card-hover">
+                            <div class="text-5xl font-black text-beta-red mb-3">720,000</div>
+                            <div class="text-white text-xl font-semibold mb-2">Vehicles imported annually</div>
+                            <div class="text-gray-400">98% of Nigeria's entire car market depends on imports</div>
+                        </div>
+                        
+                        <div class="glass-effect p-8 rounded-2xl border-l-4 border-beta-red card-hover">
+                            <div class="text-5xl font-black text-beta-red mb-3">80-90%</div>
+                            <div class="text-white text-xl font-semibold mb-2">Consumer preference</div>
+                            <div class="text-gray-400">Demand for global sourcing and imported vehicles</div>
+                        </div>
+
+                        <div class="glass-effect p-8 rounded-2xl border-l-4 border-beta-red card-hover">
+                            <div class="text-5xl font-black text-beta-red mb-3">₦2M+</div>
+                            <div class="text-white text-xl font-semibold mb-2">Average overpayment</div>
+                            <div class="text-gray-400">Due to inefficient processes and hidden costs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="h-px section-divider"></div>
+
+    <!-- Solution Section -->
+    <section class="py-24 bg-beta-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 60 60\'><circle cx=\'30\' cy=\'30\' r=\'20\' fill=\'none\' stroke=\'%23dc2626\' stroke-width=\'1\'/><circle cx=\'30\' cy=\'30\' r=\'5\' fill=\'%23dc2626\'/></svg>');"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+                    <span class="text-beta-red">BETA Motors:</span> Your Trusted<br>
+                    Bridge to Global Cars
+                </h2>
+                <p class="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                    Revolutionizing car ownership in Nigeria through transparent auctions, secure pre-orders, and guaranteed delivery with zero hidden fees
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="glass-effect p-8 rounded-2xl card-hover fade-in group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-beta-red to-beta-red-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Online Auctions</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Bid transparently on verified imported vehicles with real-time pricing and instant notifications</p>
+                    <a href="#" class="text-beta-red font-bold hover:text-beta-red-light transition-colors flex items-center">
+                        Learn More 
+                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl card-hover fade-in group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-beta-red to-beta-red-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Smart Pre-Orders</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Reserve your dream car with flexible payment plans and guaranteed delivery dates</p>
+                    <a href="#" class="text-beta-red font-bold hover:text-beta-red-light transition-colors flex items-center">
+                        Learn More 
+                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl card-hover fade-in group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-beta-red to-beta-red-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Secure Escrow</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Bank-grade security with escrow services and multiple verified payment options</p>
+                    <a href="#" class="text-beta-red font-bold hover:text-beta-red-light transition-colors flex items-center">
+                        Learn More 
+                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl card-hover fade-in group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-beta-red to-beta-red-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1V8a1 1 0 00-1-1h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Doorstep Delivery</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Nationwide logistics network ensuring safe delivery to any location across Nigeria</p>
+                    <a href="#" class="text-beta-red font-bold hover:text-beta-red-light transition-colors flex items-center">
+                        Learn More 
+                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <h3 class="text-3xl font-bold text-white mb-8">Our Core Values</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <span class="px-8 py-4 bg-gradient-to-r from-beta-red to-beta-red-light text-white rounded-full font-bold text-lg shadow-lg">Trust</span>
+                    <span class="px-8 py-4 bg-white text-beta-black rounded-full font-bold text-lg shadow-lg">Affordability</span>
+                    <span class="px-8 py-4 bg-beta-gray-light text-white rounded-full font-bold text-lg shadow-lg">Convenience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="h-px section-divider"></div>
+
+    <!-- How It Works Section -->
+    <section class="py-24 bg-beta-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">How It Works</h2>
+                <p class="text-xl text-gray-400">Four simple steps to get your dream car delivered</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                            <span class="text-3xl font-black text-white">1</span>
+                        </div>
+                        <div class="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 translate-x-full">
+                            <svg class="w-8 h-8 text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-xl">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 mx-auto text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Browse & Bid</h3>
+                        <p class="text-gray-400">Explore our verified inventory and place competitive bids or secure pre-orders</p>
+                    </div>
+                </div>
+
+                <div class="text-center fade-in group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                            <span class="text-3xl font-black text-white">2</span>
+                        </div>
+                        <div class="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 translate-x-full">
+                            <svg class="w-8 h-8 text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-xl">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 mx-auto text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Secure Payment</h3>
+                        <p class="text-gray-400">Complete payment through our secure escrow system with multiple payment options</p>
+                    </div>
+                </div>
+
+                <div class="text-center fade-in group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                            <span class="text-3xl font-black text-white">3</span>
+                        </div>
+                        <div class="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 translate-x-full">
+                            <svg class="w-8 h-8 text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-xl">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 mx-auto text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Inspection Report</h3>
+                        <p class="text-gray-400">Receive detailed inspection reports and documentation before final delivery</p>
+                    </div>
+                </div>
+
+                <div class="text-center fade-in group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-beta-red to-beta-red-light rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                            <span class="text-3xl font-black text-white">4</span>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-xl">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 mx-auto text-beta-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1V8a1 1 0 00-1-1h-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Doorstep Delivery</h3>
+                        <p class="text-gray-400">Enjoy hassle-free delivery to your preferred location anywhere in Nigeria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="h-px section-divider"></div>
+
+    <!-- Section Divider -->
+    <div class="h-px section-divider"></div>
+
+    <!-- Partnerships Section -->
+    <section class="py-24 bg-beta-gray">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Join Our Ecosystem</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Partner with us to transform Nigeria's automotive landscape through innovation, reliability, and trust
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-beta-red to-beta-red-light rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1V8a1 1 0 00-1-1h-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Innoson Motors</h3>
+                    <p class="text-gray-400">Leading Nigerian automotive manufacturer</p>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-beta-red to-beta-red-light rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Nord Automobiles</h3>
+                    <p class="text-gray-400">Premium vehicle assembly and distribution</p>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-beta-red to-beta-red-light rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Volkswagen</h3>
+                    <p class="text-gray-400">Global automotive excellence and innovation</p>
+                </div>
+
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-beta-red to-beta-red-light rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Financial Partners</h3>
+                    <p class="text-gray-400">Flexible financing and payment solutions</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Partner with us for new car supply, financing solutions, and reliable delivery services across Nigeria
+                </p>
+                <button class="btn-primary text-white px-8 py-4 text-lg font-bold rounded-lg">
+                    Become a Partner
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Footer -->
+    <section class="py-24 bg-beta-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-beta-red/10 to-transparent"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                    Ready to Drive Home<br>
+                    <span class="text-beta-red">Your Next Car?</span>
+                </h2>
+                <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                    Join the revolution and get early access to exclusive deals, transparent auctions, and guaranteed delivery
+                </p>
+                
+                <div class="glass-effect p-8 rounded-2xl max-w-2xl mx-auto flex flex-row justify-center items-center">
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <!-- <input type="text" placeholder="Full Name" class="flex-1 px-6 py-4 bg-beta-gray-light border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-beta-red transition-colors">
+                        <input type="email" placeholder="Email Address" class="flex-1 px-6 py-4 bg-beta-gray-light border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-beta-red transition-colors"> -->
+                        <button type="submit" class="btn-primary text-white px-8 py-4 font-bold rounded-lg whitespace-nowrap" onclick="whatsapp()">
+                            Contact Us
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-beta-gray border-t border-gray-800">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-beta-red to-beta-red-light rounded-lg flex items-center justify-center">
+                            <div class="w-6 h-6 bg-white rounded-sm"></div>
+                        </div>
+                        <span class="text-2xl font-bold">
+                            <span class="text-white">BETA</span> 
+                            <span class="text-beta-red">Motors</span>
+                        </span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Revolutionizing car ownership in Nigeria through transparent auctions and reliable delivery.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-beta-red transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-beta-red transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.223.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.18 2.302-6.1 6.613-6.1 3.475 0 6.177 2.47 6.177 5.776 0 3.441-2.186 6.217-5.212 6.217-1.015 0-1.972-.526-2.302-1.175l-.626 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446C18.624 24.013 24.013 18.624 24.013 11.987 24.013 5.367 18.646.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Live Auctions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pre-Orders</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Partnerships</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Vehicle Inspection</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Escrow Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Logistics & Delivery</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Financing Options</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Insurance</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Contact Info</h4>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            Lagos, Nigeria
+                        </li>
+                        <li class="text-gray-400 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            +234 (0) 800 BETA-CAR
+                        </li>
+                        <li class="text-gray-400 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            hello@betamotors.ng
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 BETA Motors. All rights reserved. | Privacy Policy | Terms of Service
+                </p>
+                <p class="text-gray-400 text-sm">
+                    Revolutionizing Nigerian car ownership since 2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Carousel functionality
+
+        function whatsapp(){
+            const plugin = function (number, text="Hello Beta Motors, I am interested in your car for sale") {
+                // https://wa.me/15551234567?text=I'm%20interested%20in%20your%20car%20for%20sale.
+                const message = text.replace(/ /g, "%20")
+                return "https://wa.me/" + number + "?text=" + message
+            }
+
+            // enter whatsappNumber and prompt message here only
+            const whatsappNumber = "2348164602907"
+            const whatsappPromptMessage = undefined    
+
+            window.open(plugin(whatsappNumber, whatsappPromptMessage), "_blank");
+        }
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const heroContents = [
+            {
+                title: 'Affordable Imported Cars<br>Delivered to Your Doorstep',
+                subtitle: 'Join thousands revolutionizing car ownership in Nigeria with transparent auctions and guaranteed delivery',
+                primaryBtn: 'Contact Us',
+                // secondaryBtn: 'View Inventory'
+            },
+            {
+                title: 'Bid Transparently<br>on Your Dream Ride',
+                subtitle: 'Secure, fair auctions with complete price transparency and real-time bidding updates',
+                primaryBtn: 'Contact Us',
+                // secondaryBtn: 'Learn How'
+            },
+            {
+                title: 'Pre-Order with Confidence<br>Zero Hidden Fees',
+                subtitle: 'What you see is what you pay - guaranteed delivery with flexible payment options',
+                primaryBtn: 'Contact Us',
+                // secondaryBtn: 'View Catalog'
+            }
+        ];
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+
+            // Update dots
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-beta-red');
+                    dot.classList.remove('bg-white', 'opacity-50');
+                } else {
+                    dot.classList.add('bg-white', 'opacity-50');
+                    dot.classList.remove('bg-beta-red');
+                }
+            });
+
+            // Update hero content
+            const heroContent = document.querySelector('.hero-content');
+            const content = heroContents[index];
+            heroContent.innerHTML = `
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                    <span class="text-gradient">${content.title.split('<br>')[0]}</span><br>
+                    <span class="text-white">${content.title.split('<br>')[1]}</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto font-light">
+                    ${content.subtitle}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="btn-primary text-white px-10 py-4 text-lg font-bold rounded-lg w-full sm:w-auto"  onclick="whatsapp()">
+                        ${content.primaryBtn}
+                    </button>
+                </div>
+            `;
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            showSlide((currentSlide + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Arrow navigation
+        document.getElementById('next-btn').addEventListener('click', nextSlide);
+        document.getElementById('prev-btn').addEventListener('click', prevSlide);
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            // Add mobile menu functionality here
+            console.log('Mobile menu clicked');
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const name = formData.get('name') || this.querySelector('input[type="text"]').value;
+            const email = formData.get('email') || this.querySelector('input[type="email"]').value;
+            
+            if (name && email) {
+                // Simulate form submission
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+                button.textContent = 'Joining...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    button.textContent = 'Welcome Aboard!';
+                    button.classList.remove('btn-primary');
+                    button.classList.add('bg-green-600');
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                        button.classList.add('btn-primary');
+                        button.classList.remove('bg-green-600');
+                        this.reset();
+                    }, 2000);
+                }, 1000);
+            }
+        });
+
+        // Add loading states and micro-interactions
+        document.querySelectorAll('.btn-primary, .card-hover').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            el.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
